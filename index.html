@@ -1,33 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabella A-AK e 1-681</title>
+  <meta charset="UTF-8">
+  <title>Classifica Squadre</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    select { padding: 5px; margin-right: 10px; }
+  </style>
 </head>
 <body>
+  <h1>Classifica Squadre</h1>
+  <label>Da: <select id="startYear"></select></label>
+  <label>A: <select id="endYear"></select></label>  <table id="classifica">
+    <thead>
+      <tr>
+        <th>Squadra</th>
+        <th>Tot</th>
+        <th>TotCL</th>
+        <th>CL</th>
+        <th>F</th>
+        <th>SF</th>
+        <th>Q</th>
+        <th>O</th>
+        <th>S</th>
+        <th>P</th>
+        <th>VS</th>
+        <th>DR</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>  <script>
+    const teams = ["Real Madrid", "Milan", "Barcellona", "Juventus", "Bayern Monaco"];
+    const columns = ["Tot", "TotCL", "CL", "F", "SF", "Q", "O", "S", "P", "VS", "DR"];
 
-<table border="1">
-  <thead>
-    <tr>
-      <th></th> <!-- cella vuota per l'angolo in alto a sinistra -->
-      <!-- Intestazioni delle colonne da A ad AK -->
-      <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th>
-      <th>J</th><th>K</th><th>L</th><th>M</th><th>N</th><th>O</th><th>P</th><th>Q</th><th>R</th>
-      <th>S</th><th>T</th><th>U</th><th>V</th><th>W</th><th>X</th><th>Y</th><th>Z</th><th>AA</th>
-      <th>AB</th><th>AC</th><th>AD</th><th>AE</th><th>AF</th><th>AG</th><th>AH</th><th>AI</th>
-      <th>AJ</th><th>AK</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Righe da 1 a 681 -->
-    <!-- Ogni riga contiene il numero di riga come intestazione di riga -->
-    <!-- E poi le celle vuote per le colonne A-AK -->
-    <!-- Puoi replicare questa struttura per aggiungere più righe -->
-    <tr><th>1</th><td></td><td></td> <!-- e così via per le altre celle --></tr>
-    <!-- Aggiungi altre righe qui -->
-  </tbody>
-</table>
+    // Dati di esempio per 3 stagioni
+    const data = {
+      "1955/56": {
+        "Real Madrid": { Tot: 10, TotCL: 8, CL: 1, F: 0, SF: 1, Q: 0, O: 0, S: 0, P: 0, VS: 1, DR: 2 },
+        "Milan": { Tot: 5, TotCL: 3, CL: 0, F: 1, SF: 0, Q: 1, O: 0, S: 0, P: 0, VS: 0, DR: 1 },
+        // Altri team con 0
+      },
+      "1956/57": {
+        "Real Madrid": { Tot: 12, TotCL: 10, CL: 1, F: 0, SF: 1, Q: 0, O: 0, S: 0, P: 0, VS: 2, DR: 3 },
+        "Milan": { Tot: 6, TotCL: 4, CL: 0, F: 1, SF: 0, Q: 1, O: 0, S: 0, P: 0, VS: 1, DR: 0 },
+      },
+      "1957/58": {
+        "Barcellona": { Tot: 7, TotCL: 5, CL: 0, F: 0, SF: 1, Q: 1, O: 0, S: 0, P: 1, VS: 0, DR: -1 },
+        "Juventus": { Tot: 4, TotCL: 2, CL: 0, F: 0, SF: 0, Q: 1, O: 0, S: 0, P: 1, VS: 1, DR: 0 },
+      },
+    };
 
-</body>
+    // Popola dropdown
+    const startYear = document.getElementById("startYear");
+    const endYear = document.getElementById("endYear");
+    const seasons = Object.keys(data);
+    seasons.forEach(season => {
+      const opt1 = new Option(season, season);
+      const opt2 = new Option(season, season);
+      startYear.add(opt1.cloneNode(true));
+      endYear.add(opt2.cloneNode(true));
+    });
+    startYear.value = seasons[0];
+    endYear.value = seasons[seasons.length - 1];
+
+    // Calcola punteggi
+    function calculateTable() {
+      const start = seasons.indexOf(startYear.value);
+      const end = seasons.indexOf(endYear.value);
+      const result = {};
+
+      teams.forEach(team => {
+        result[team] = Object.fromEntries(columns.map(col => [col, 0]));
+      });
+
+      seasons.slice(start, end + 1).forEach(season => {
+        const seasonData = data[season];
+        if (!seasonData) return;
+        teams.forEach(team => {
+          const teamData = seasonData[team];
+          if (teamData) {
+            columns.forEach(col => {
+              result[team][col] += teamData[col] || 0;
+            });
+          }
+        });
+      });
+
+      const tbody = document.querySelector("#classifica tbody");
+      tbody.innerHTML = "";
+      teams.forEach(team => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${team}</td>` + columns.map(col => `<td>${result[team][col]}</td>`).join("");
+        tbody.appendChild(row);
+      });
+    }
+
+    startYear.addEventListener("change", calculateTable);
+    endYear.addEventListener("change", calculateTable);
+
+    calculateTable();
+  </script></body>
 </html>
