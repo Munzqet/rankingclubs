@@ -1,13 +1,97 @@
-<!DOCTYPE html>
-
-<html>
+<!DOCTYPE html><html lang="it">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+  <meta charset="UTF-8">
+  <title>Serie A - All Time Ranking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    th, td {
+      padding: 8px 10px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+    }
+    th {
+      background-color: #f3f4f6;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td {
+      background-color: #f3f4f6;
+    }
+    tr:hover td {
+      background-color: #e0e7ff;
+    }
+    .back-link {
+      display: block;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
-  <h1>
-    Hello, World!
-  </h1>
+  <a href="index.html" class="back-link">&larr; Torna a RankingClubs</a>
+  <h1>Serie A - Classifica All Time</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Posizione</th>
+        <th>Squadra</th>
+        <th>Punti</th>
+        <th>Partite</th>
+        <th>Vittorie</th>
+        <th>Pareggi</th>
+        <th>Sconfitte</th>
+        <th>Gol Fatti</th>
+        <th>Gol Subiti</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Juventus</td>
+        <td>5000</td>
+        <td>2800</td>
+        <td>1500</td>
+        <td>800</td>
+        <td>500</td>
+        <td>4300</td>
+        <td>2300</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Inter</td>
+        <td>4700</td>
+        <td>2800</td>
+        <td>1400</td>
+        <td>850</td>
+        <td>550</td>
+        <td>4200</td>
+        <td>2400</td>
+      </tr>
+      <!-- Aggiungi altre squadre -->
+    </tbody>
+  </table>
 </body>
 </html>
