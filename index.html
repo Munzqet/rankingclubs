@@ -1,104 +1,377 @@
 <!DOCTYPE html><html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Classifica Squadre</title>
+  <title>RankingClubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    select { padding: 5px; margin-right: 10px; }
-  </style>
+    body {
+      font-family: 'Inter', sans-serif;
+      padding: 40px;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      color: #111827;
+      margin-bottom: 30px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;
+      text-align: center;
+      font-size: 0.75rem;
+    }
+    th {
+      background-color: #f3f4f6;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .row-even td { background-color: #f3f4f6; }
+    .row-odd td { background-color: #e5e7eb; }
+    .tot { background-color: #facc15 !important; color: #1f2937; font-weight: 600; }
+    .cl-column { background-color: #1e3a8a !important; color: white; }
+    .el-column { background-color: #7f1d1d !important; color: #fb923c; }
+    .cfl-column { background-color: #15803d !important; color: white; }
+    .cdc-column { background-color: #bae6fd !important; color: #0c4a6e; }
+    .sc-column { background-color: #06b6d4 !important; color: white; }
+    .filters {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      background-color: #e0e7ff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .filters label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+    .filters select {
+      padding: 6px 10px;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background-color: #fff;
+      color: #1e3a8a;
+      font-weight: 500;
+    }
+    .filters select:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+    .team-logo-wrapper {
+      width: 28px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+    .team-logo {
+      max-height: 100%;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+      display: block;
+    }
+    .team-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .team-cell {
+      text-align: left;
+      padding-left: 10px;
+    }
+    .row-alt-light td {
+    filter: brightness(1.1);
+  }
+  .row-alt-normal td {
+    filter: brightness(1);
+  }
+  .row-alt-light:hover td,
+  .row-alt-normal:hover td {
+    filter: brightness(1.25);
+    cursor: pointer;
+  }
+  tr:hover td {
+    filter: brightness(1.15);
+    cursor: pointer;
+  }
+  .alltime-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: #e5e7eb;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  .alltime-bar .label {
+    font-weight: 600;
+    color: #1f2937;
+    margin-right: 10px;
+  }
+  .alltime-bar .link {
+    text-decoration: none;
+    color: #1e40af;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  .alltime-bar .link:hover {
+    background-color: #dbeafe;
+  }
+  .leagues-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    padding: 10px 0 20px;
+    background-color: #f3f4f6;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1f2937;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  .bar-label {
+    color: #111827;
+    margin-right: 8px;
+  }
+  .league-link {
+    color: #2563eb;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  .league-link:hover {
+    background-color: #e0e7ff;
+  }
+  .leagues-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    padding: 10px 0 20px;
+    background-color: #f3f4f6;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1f2937;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  .bar-label {
+    color: #111827;
+    margin-right: 8px;
+  }
+  .league-link {
+    color: #2563eb;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+  }
+  .league-link:hover {
+    background-color: #e0e7ff;
+  }
+</style>
 </head>
 <body>
-  <h1>Classifica Squadre</h1>
-  <label>Da: <select id="startYear"></select></label>
-  <label>A: <select id="endYear"></select></label>  <table id="classifica">
+  <h1>RankingClubs.com</h1>
+  <nav class="leagues-bar">
+    <h3>All time leagues rank</h3>
+    <span class="bar-label">All time rank:</span>
+    <a href="#" class="league-link">Premier League</a>
+    <a href="#" class="league-link">Serie A</a>
+    <a href="#" class="league-link">La Liga</a>
+    <a href="#" class="league-link">Bundesliga</a>
+    <a href="#" class="league-link">Ligue 1</a>
+    <a href="#" class="league-link">Eredivisie</a>
+    <a href="#" class="league-link">Primeira Liga</a>
+  </nav>
+  <div class="filters">
+    <label>Da: <select id="startYear"></select></label>
+    <label>A: <select id="endYear"></select></label>
+  </div>
+  <table id="classifica">
     <thead>
-      <tr>
-        <th>Squadra</th>
-        <th>Tot</th>
-        <th>TotCL</th>
-        <th>CL</th>
-        <th>F</th>
-        <th>SF</th>
-        <th>Q</th>
-        <th>O</th>
-        <th>S</th>
-        <th>P</th>
-        <th>VS</th>
-        <th>DR</th>
-      </tr>
+      <tr id="header-row"></tr>
     </thead>
     <tbody></tbody>
-  </table>  <script>
-    const teams = ["Real Madrid", "Milan", "Barcellona", "Juventus", "Bayern Monaco"];
-    const columns = ["Tot", "TotCL", "CL", "F", "SF", "Q", "O", "S", "P", "VS", "DR"];
-
-    // Dati di esempio per 3 stagioni
+  </table>
+  <script>
+    const teams = [
+  "Real Madrid", "Milan", "Barcellona",
+  "Roma", "Atalanta", "Lazio", "Napoli", "Perugia",
+  "Athletic Bilbao", "Atletico Madrid", "West Ham", "Fiorentina", "Inter",
+  "Manchester United", "Manchester City", "Arsenal", "Brighton", "Leicester",
+  "Aston Villa", "Blackburn", "Villareal", "Valencia", "Siviglia", "Betis Siviglia",
+  "Palermo", "Torino", "Celta Vigo", "Real Sociedad", "Espanyol",
+  "Benfica", "Sporting Lisbona", "Lione", "Marsiglia", "Montpellier",
+  "Borussia Dortmund", "Borussia Moenchengladbach", "Hertha Berlino", "Union Berlino",
+  "Copenaghen", "CSKA Mosca", "Dinamo Zagabria", "Levski Sofia", "Lech Poznan",
+  "Legia Varsavia", "Panathinaikos", "Stade Rennais",
+  "Osasuna", "Udinese", "Livorno", "Amburgo", "Friburgo", "Hoffenheim",
+  "Liverpool", "Everton", "Zenit San Pietroburgo", "Galatasaray", "Besiktas",
+  "Trabzonspor", "Istanbul Basaksehir", "Fenerbahce", "Dinamo Bucarest",
+  "Steaua Bucarest", "Celtic", "Rangers"
+];
+    const logos = {
+  "Osasuna": "https://upload.wikimedia.org/wikipedia/en/5/5e/CA_Osasuna_logo.svg",
+  "Udinese": "https://upload.wikimedia.org/wikipedia/en/2/2e/Udinese_Calcio_logo.svg",
+  "Napoli": "https://upload.wikimedia.org/wikipedia/commons/2/2d/SSC_Napoli.svg",
+  "Livorno": "https://upload.wikimedia.org/wikipedia/en/1/1c/AS_Livorno_Calcio_logo.svg",
+  "Amburgo": "https://upload.wikimedia.org/wikipedia/commons/6/66/Hamburger_SV.svg",
+  "Friburgo": "https://upload.wikimedia.org/wikipedia/en/0/0e/SC_Freiburg_logo.svg",
+  "Hoffenheim": "https://upload.wikimedia.org/wikipedia/en/9/95/TSG_1899_Hoffenheim_logo.svg",
+  "Liverpool": "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
+  "Everton": "https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg",
+  "Zenit San Pietroburgo": "https://upload.wikimedia.org/wikipedia/en/f/fd/FC_Zenit_Saint_Petersburg_logo.svg",
+  "Galatasaray": "https://upload.wikimedia.org/wikipedia/en/8/8c/Galatasaray_Sports_Club_Logo.svg",
+  "Besiktas": "https://upload.wikimedia.org/wikipedia/en/b/bf/Besiktas_JK.svg",
+  "Trabzonspor": "https://upload.wikimedia.org/wikipedia/en/9/9b/Trabzonspor.svg",
+  "Istanbul Basaksehir": "https://upload.wikimedia.org/wikipedia/en/5/5f/Istanbul_Basaksehir_FK_logo.svg",
+  "Fenerbahce": "https://upload.wikimedia.org/wikipedia/en/3/3e/Fenerbahce_logo.svg",
+  "Dinamo Bucarest": "https://upload.wikimedia.org/wikipedia/en/4/4c/FC_Dinamo_Bucure%C8%99ti_logo.svg",
+  "Steaua Bucarest": "https://upload.wikimedia.org/wikipedia/en/9/9f/FC_Steaua_Bucuresti_logo.svg",
+  "Celtic": "https://upload.wikimedia.org/wikipedia/en/1/1c/Celtic_FC.svg",
+  "Rangers": "https://upload.wikimedia.org/wikipedia/en/5/5c/Rangers_FC.svg",
+      "Real Madrid": "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg",
+      "Milan": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg",
+      "Barcellona": "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg"
+    };
+    const groups = [
+      { prefix: "CL", label: "TotCL,CL,F,SF,Q,O,S,P,VS,DR", class: "cl-column" },
+      { prefix: "EL", label: "TotEL,EL,F,SF,Q,O,S,P,VS,DR", class: "el-column" },
+      { prefix: "CFL", label: "TotCFL,CFL,F,SF,Q,O,S,P,VS,DR", class: "cfl-column" },
+      { prefix: "CDC", label: "TotCDC,CDC,F,SF,Q,O,S,P,VS,DR", class: "cdc-column" },
+      { prefix: "SC", label: "TotSC,SC", class: "sc-column" },
+    ];
+    const columns = ["Tot", ...groups.flatMap(g => g.label.split(",").map(col => `${g.prefix}_${col}`))];
+    const columnClasses = Object.fromEntries(columns.map(col => {
+      if (col === "Tot") return [col, "tot"];
+      const group = groups.find(g => col.startsWith(g.prefix));
+      return [col, group ? group.class : ""];
+    }));
     const data = {
       "1955/56": {
-        "Real Madrid": { Tot: 10, TotCL: 8, CL: 1, F: 0, SF: 1, Q: 0, O: 0, S: 0, P: 0, VS: 1, DR: 2 },
-        "Milan": { Tot: 5, TotCL: 3, CL: 0, F: 1, SF: 0, Q: 1, O: 0, S: 0, P: 0, VS: 0, DR: 1 },
-        // Altri team con 0
+        "Real Madrid": { CL_TotCL: 8, CL_CL: 1, CL_F: 0, CL_SF: 1, SC_SC: 1 },
+        "Milan": { CL_TotCL: 3, CL_CL: 0, CL_F: 1, EL_SF: 1, SC_SC: 0 },
+        "Barcellona": { EL_TotEL: 4, EL_EL: 1, EL_F: 1, SC_SC: 1 }
       },
       "1956/57": {
-        "Real Madrid": { Tot: 12, TotCL: 10, CL: 1, F: 0, SF: 1, Q: 0, O: 0, S: 0, P: 0, VS: 2, DR: 3 },
-        "Milan": { Tot: 6, TotCL: 4, CL: 0, F: 1, SF: 0, Q: 1, O: 0, S: 0, P: 0, VS: 1, DR: 0 },
-      },
-      "1957/58": {
-        "Barcellona": { Tot: 7, TotCL: 5, CL: 0, F: 0, SF: 1, Q: 1, O: 0, S: 0, P: 1, VS: 0, DR: -1 },
-        "Juventus": { Tot: 4, TotCL: 2, CL: 0, F: 0, SF: 0, Q: 1, O: 0, S: 0, P: 1, VS: 1, DR: 0 },
-      },
-    };
+        "Real Madrid": { CL_TotCL: 6, CL_CL: 1, CL_SF: 1, EL_Q: 1, SC_SC: 0 },
+        "Milan": { CL_TotCL: 2, CL_Q: 1, EL_EL: 2, SC_SC: 1 },
+        "Barcellona": { EL_TotEL: 5, EL_EL: 2, EL_Q: 1, SC_SC: 0 }
+      }
+    };const startYear = document.getElementById("startYear");
+const endYear = document.getElementById("endYear");
+const seasons = Object.keys(data);
+seasons.forEach(season => {
+  startYear.add(new Option(season, season));
+  endYear.add(new Option(season, season));
+});
+startYear.value = seasons[0];
+endYear.value = seasons[seasons.length - 1];
 
-    // Popola dropdown
-    const startYear = document.getElementById("startYear");
-    const endYear = document.getElementById("endYear");
-    const seasons = Object.keys(data);
-    seasons.forEach(season => {
-      const opt1 = new Option(season, season);
-      const opt2 = new Option(season, season);
-      startYear.add(opt1.cloneNode(true));
-      endYear.add(opt2.cloneNode(true));
-    });
-    startYear.value = seasons[0];
-    endYear.value = seasons[seasons.length - 1];
+let currentSort = { col: null, asc: true };
 
-    // Calcola punteggi
-    function calculateTable() {
-      const start = seasons.indexOf(startYear.value);
-      const end = seasons.indexOf(endYear.value);
-      const result = {};
+function generateHeader() {
+  const row = document.getElementById("header-row");
+  row.innerHTML = `<th>Squadra</th>` + columns.map(col => `<th data-col="${col}">${col.replace(/.*_/, '').replace('Tot', 'Tot')}</th>`).join("");
+}
 
-      teams.forEach(team => {
-        result[team] = Object.fromEntries(columns.map(col => [col, 0]));
-      });
+function calculateTable() {
+  const start = seasons.indexOf(startYear.value);
+  const end = seasons.indexOf(endYear.value);
+  const result = {};
 
-      seasons.slice(start, end + 1).forEach(season => {
-        const seasonData = data[season];
-        if (!seasonData) return;
-        teams.forEach(team => {
-          const teamData = seasonData[team];
-          if (teamData) {
-            columns.forEach(col => {
-              result[team][col] += teamData[col] || 0;
-            });
+  teams.forEach(team => {
+    result[team] = Object.fromEntries(columns.map(col => [col, 0]));
+  });
+
+  seasons.slice(start, end + 1).forEach(season => {
+    const seasonData = data[season];
+    if (!seasonData) return;
+    teams.forEach(team => {
+      const teamData = seasonData[team];
+      if (teamData) {
+        Object.entries(teamData).forEach(([key, val]) => {
+          if (result[team][key] !== undefined) {
+            result[team][key] += val;
           }
         });
-      });
+      }
+    });
+  });
 
-      const tbody = document.querySelector("#classifica tbody");
-      tbody.innerHTML = "";
-      teams.forEach(team => {
-        const row = document.createElement("tr");
-        row.innerHTML = `<td>${team}</td>` + columns.map(col => `<td>${result[team][col]}</td>`).join("");
-        tbody.appendChild(row);
-      });
-    }
+  teams.forEach(team => {
+    // Calcolo automatico dei Totali
+    const r = result[team];
+    r["CL_TotCL"] = (r["CL_CL"] || 0) * 690 + (r["CL_F"] || 0) * 378 + (r["CL_SF"] || 0) * 216 + (r["CL_Q"] || 0) * 96 + (r["CL_O"] || 0) * 42 + (r["CL_S"] || 0) * 6 + (r["CL_P"] || 0) * 42 + (r["CL_VS"] || 0) * 3 + (r["CL_DR"] || 0);
+    r["EL_TotEL"] = (r["EL_EL"] || 0) * 126 + (r["EL_F"] || 0) * 63 + (r["EL_SF"] || 0) * 31 + (r["EL_Q"] || 0) * 15 + (r["EL_O"] || 0) * 7 + (r["EL_S"] || 0) + (r["EL_P"] || 0) * 7 + (r["EL_VS"] || 0) * 0.6 + (r["EL_DR"] || 0) * 0.2;
+    r["CFL_TotCFL"] = (r["CFL_CFL"] || 0) * 21 + (r["CFL_F"] || 0) * 10 + (r["CFL_SF"] || 0) * 5 + (r["CFL_Q"] || 0) * 2 + (r["CFL_O"] || 0) + (r["CFL_S"] || 0) * 0.5 + (r["CFL_P"] || 0) + (r["CFL_VS"] || 0) * 0.1 + (r["CFL_DR"] || 0) * 0.04;
+    r["SC_TotSC"] = (r["SC_SC"] || 0) * 85;
 
-    startYear.addEventListener("change", calculateTable);
-    endYear.addEventListener("change", calculateTable);
+    const totSum = r["CL_TotCL"] + r["EL_TotEL"] + r["CFL_TotCFL"] + r["CDC_TotCDC"] + r["SC_TotSC"];
+    result[team]["Tot"] = totSum;
+  });
 
-    calculateTable();
-  </script></body>
+  let sortedTeams = [...teams];
+  if (currentSort.col) {
+    sortedTeams.sort((a, b) => currentSort.asc ? result[a][currentSort.col] - result[b][currentSort.col] : result[b][currentSort.col] - result[a][currentSort.col]);
+  }
+
+  const tbody = document.querySelector("#classifica tbody");
+  tbody.innerHTML = "";
+  sortedTeams.forEach((team, index) => {
+    const row = document.createElement("tr");
+    row.className = index % 2 === 0 ? 'row-alt-light' : 'row-alt-normal';
+    const logo = logos[team] ? `<img src="${logos[team]}" class="team-logo" alt="${team}">` : "";
+    row.innerHTML = `<td class="team-cell"><span class="team-name"><span class="team-logo-wrapper">${logo}</span>${team}</span></td>` +
+      columns.map(col => `<td class="${columnClasses[col]}">${result[team][col]}</td>`).join("");
+    tbody.appendChild(row);
+  });
+}
+
+generateHeader();
+calculateTable();
+startYear.addEventListener("change", calculateTable);
+endYear.addEventListener("change", calculateTable);
+
+document.querySelector("#header-row").addEventListener("click", e => {
+  const th = e.target.closest("th[data-col]");
+  if (!th) return;
+  const col = th.dataset.col;
+  if (currentSort.col === col) {
+    currentSort.asc = !currentSort.asc;
+  } else {
+    currentSort.col = col;
+    currentSort.asc = true;
+  }
+  calculateTable();
+});
+
+  </script>
+</body>
 </html>
