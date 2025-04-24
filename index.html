@@ -350,9 +350,8 @@ let currentSort = { col: "Tot", asc: false };
 
 function generateHeader() {
   const row = document.getElementById("header-row");
-  row.innerHTML = `<th>Squadra</th>` + columns.map(col => `<th data-col="${col}">${col.replace(/.*_/, '').replace('Tot', 'Tot')}</th>`).join("");
+  row.innerHTML = `<th>#</th><th>Squadra</th>` + columns.map(col => `<th data-col="${col}">${col.replace(/.*_/, '').replace('Tot', 'Tot')}</th>`).join("");
 }
-
 function calculateTable() {
   const start = seasons.indexOf(startYear.value);
   const end = seasons.indexOf(endYear.value);
@@ -403,7 +402,7 @@ function calculateTable() {
 const flagImg = info.flag ? `<img src="${info.flag}" alt="" class="team-flag" />` : "";
 const colorsImg = info.colorsImg ? `<img src="${info.colorsImg}" alt="colori sociali" class="team-colors-img" />` : "";
 
-row.innerHTML = `<td class="team-cell"><span class="team-name">${colorsImg}${flagImg}${team}</span></td>` +
+row.innerHTML = `<td>${index + 1}</td><td class="team-cell"><span class="team-name">${colorsImg}${flagImg}${team}</span></td>` +
   columns.map(col => `<td class="${columnClasses[col]}">${result[team][col]}</td>`).join("");
     tbody.appendChild(row);
   });
