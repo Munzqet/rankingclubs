@@ -3,215 +3,210 @@
   <meta charset="UTF-8">
   <title>RankingClubs</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      padding: 40px;
-      background-color: #f9fafb;
-      color: #1f2937;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      text-align: center;
-      color: #111827;
-      margin-bottom: 30px;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      background-color: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-    th, td {
-      border: 1px solid #e5e7eb;
-      padding: 6px 8px;
-      text-align: center;
-      font-size: 0.75rem;
-    }
-    th {
-      background-color: #f3f4f6;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .row-even td { background-color: #f3f4f6; }
-    .row-odd td { background-color: #e5e7eb; }
-    .tot { background-color: #facc15 !important; color: #1f2937; font-weight: 600; }
-    .cl-column { background-color: #1e3a8a !important; color: white; }
-    .el-column { background-color: #7f1d1d !important; color: #fb923c; }
-    .cfl-column { background-color: #15803d !important; color: white; }
-    .cdc-column { background-color: #bae6fd !important; color: #0c4a6e; }
-    .sc-column { background-color: #06b6d4 !important; color: white; }
-    .filters {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 30px;
-      background-color: #e0e7ff;
-      padding: 12px 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    .filters label {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #1e3a8a;
-    }
-    .filters select {
-      padding: 6px 10px;
-      font-size: 0.95rem;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      background-color: #fff;
-      color: #1e3a8a;
-      font-weight: 500;
-    }
-    .filters select:focus {
-      outline: none;
-      border-color: #2563eb;
-    }
-    .team-logo-wrapper {
-      width: 28px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 6px;
-      flex-shrink: 0;
-    }
-    .team-logo {
-      max-height: 100%;
-      max-width: 100%;
-      height: auto;
-      width: auto;
-      display: block;
-    }
-    .team-name {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .team-cell {
-      text-align: left;
-      padding-left: 10px;
-    }
-    .row-alt-light td {
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    padding: 40px;
+    background-color: #f9fafb;
+    color: #1f2937;
+    overflow-x:visible;
+    width: 300vw;
+  }
+
+  /* Header e Titolo */
+  .hero-section {
+    background: linear-gradient(to right, #e0f2fe, #f8fafc);
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .main-title {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 20px;
+  }
+
+/* MENÙ CAMPIONATI */
+.league-menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: #ffffff;
+  padding: 14px 24px;
+  margin: 0 0 0 0;
+  border: 1px solid #d1d5db;
+  width: 100%;
+  scroll-behaviour: smooth;
+  box-sizing: border-box;
+}
+.league-menu::-webkit-scrollbar {
+  display: none;
+}
+.menu-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111827;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+.menu-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #111827;
+  background-color: #f9fafb;
+  padding: 6px 14px;
+  font-weight: 400;
+  border: 1px solid #d1d5db;
+  margin-right: 12px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+.menu-link:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+/* SELEZIONATORE STAGIONI */
+.filters {
+  display: flex;
+  max-width: 108vw;
+  gap: 20px;
+  background-color: #ffffff;
+  padding: 14px 24px;
+  margin-bottom: 30px;
+  border: 1px solid #d1d5db;
+}
+.filters label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+.filters select {
+  padding: 6px 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #111827;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+}
+.filters select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+  /* Tabella */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 6px 8px;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .row-alt-light td {
     filter: brightness(1.1);
   }
+
   .row-alt-normal td {
     filter: brightness(1);
   }
+
   .row-alt-light:hover td,
   .row-alt-normal:hover td {
     filter: brightness(1.25);
     cursor: pointer;
   }
+
   tr:hover td {
     filter: brightness(1.15);
     cursor: pointer;
   }
-  .alltime-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-    background-color: #e5e7eb;
-    padding: 10px 20px;
-    border-radius: 8px;
-  }
-  .alltime-bar .label {
-    font-weight: 600;
+
+  /* Colori colonne */
+  .tot {
+    background-color: #facc15 !important;
     color: #1f2937;
-    margin-right: 10px;
-  }
-  .alltime-bar .link {
-    text-decoration: none;
-    color: #1e40af;
-    font-weight: 500;
-    padding: 5px 8px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-  }
-  .alltime-bar .link:hover {
-    background-color: #dbeafe;
-  }
-  .leagues-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center;
-    padding: 10px 0 20px;
-    background-color: #f3f4f6;
-    font-size: 0.9rem;
     font-weight: 600;
-    color: #1f2937;
-    border-radius: 8px;
-    margin-bottom: 20px;
   }
-  .bar-label {
-    color: #111827;
-    margin-right: 8px;
+
+  .cl-column {
+    background-color: #1e3a8a !important;
+    color: white;
   }
-  .league-link {
-    color: #2563eb;
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
+
+  .el-column {
+    background-color: #7f1d1d !important;
+    color: #fb923c;
   }
-  .league-link:hover {
-    background-color: #e0e7ff;
+
+  .cfl-column {
+    background-color: #15803d !important;
+    color: white;
   }
-  .leagues-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: center;
-    padding: 10px 0 20px;
-    background-color: #f3f4f6;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1f2937;
-    border-radius: 8px;
-    margin-bottom: 20px;
+
+  .cdc-column {
+    background-color: #bae6fd !important;
+    color: #0c4a6e;
   }
-  .bar-label {
-    color: #111827;
-    margin-right: 8px;
+
+  .sc-column {
+    background-color: #06b6d4 !important;
+    color: white;
   }
-  .league-link {
-    color: #2563eb;
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-  }
-  .league-link:hover {
-    background-color: #e0e7ff;
+
+  /* Logo squadre */
+.team-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.team-colors-img, .team-flag {
+  height: 14px;
+  width: auto;
+  display: inline-block;
+  flex-shrink: 0;
+}
+  .team-cell {
+    text-align: left;
+    padding-left: 10px;
   }
 </style>
 </head>
 <body>
-  <h1>RankingClubs.com</h1>
-  <nav class="leagues-bar">
-    <span class="bar-label">All time league rankings:</span>
-    <a href="/rankingclubs/premier-league.html">Premier League</a>
-    <a href="/rankingclubs/serie-a.html">Serie A</a>
-    <a href="/rankingclubs/la-liga.html">LaLiga</a>
-    <a href="/rankingclubs/bundesliga.html">Bundesliga</a>
-    <a href="/rankingclubs/superlig.html">Süperlig</a>
-    <a href="/rankingclubs/eredivisie.html">Eredivisie</a>
-    <a href="/rankingclubs/premier-liga.html">Premier Liga</a>
-  </nav>
-  <div class="filters">
-    <label>Da: <select id="startYear"></select></label>
-    <label>A: <select id="endYear"></select></label>
-  </div>
+    <h1 class="main-title">RankingClubs.com</h1>
+    <nav class="league-menu">
+  <span class="menu-label">All time league rankings:</span>
+  <a href="premier-league.html" class="menu-link">Premier League</a>
+  <a href="serie-a.html" class="menu-link">Serie A</a>
+  <a href="la-liga.html" class="menu-link">La Liga</a>
+  <a href="bundesliga.html" class="menu-link">Bundesliga</a>
+  <a href="ligue-1.html" class="menu-link">Ligue 1</a>
+</nav>
+
+<div class="filters">
+  <label>Select seasons from: <select id="startYear"></select></label>
+  <label>to: <select id="endYear"></select></label>
+</div>
   <table id="classifica">
     <thead>
       <tr id="header-row"></tr>
@@ -220,49 +215,75 @@
   </table>
   <script>
     const teams = [
-  "Real Madrid", "Milan", "Barcellona",
-  "Roma", "Atalanta", "Lazio", "Napoli", "Perugia",
-  "Athletic Bilbao", "Atletico Madrid", "West Ham", "Fiorentina", "Inter",
-  "Manchester United", "Manchester City", "Arsenal", "Brighton", "Leicester",
-  "Aston Villa", "Blackburn", "Villareal", "Valencia", "Siviglia", "Betis Siviglia",
-  "Palermo", "Torino", "Celta Vigo", "Real Sociedad", "Espanyol",
-  "Benfica", "Sporting Lisbona", "Lione", "Marsiglia", "Montpellier",
-  "Borussia Dortmund", "Borussia Moenchengladbach", "Hertha Berlino", "Union Berlino",
-  "Copenaghen", "CSKA Mosca", "Dinamo Zagabria", "Levski Sofia", "Lech Poznan",
-  "Legia Varsavia", "Panathinaikos", "Stade Rennais",
-  "Osasuna", "Udinese", "Livorno", "Amburgo", "Friburgo", "Hoffenheim",
-  "Liverpool", "Everton", "Zenit San Pietroburgo", "Galatasaray", "Besiktas",
-  "Trabzonspor", "Istanbul Basaksehir", "Fenerbahce", "Dinamo Bucarest",
-  "Steaua Bucarest", "Celtic", "Rangers"
+  "Aalborg BK", "Aarau", "Aarhus", "AB", "Aberdeen", "Académica Coimbra", "Admira Wien", "Admira Wacker", "ADO Den Haag",
+  "AE Larisas", "AEK Athīna", "AEK Làrnaka", "AEL Lemesos", "AIK Solna", "Ajax", "Akademik Sofija", "Alanija Vladikavkaz",
+  "Alaskert", "Álaves", "Alemannia Aachen", "Hamburger", "Amsterdam FC", "Anderlecht", "Anorthosis Famagosta", "Anversa", 
+  "Anži Machačkala", "Apoel", "Apollon Limassol", "Ararat", "Ards", "Arges Pitesti", "Aris Bonnevoie", "ArÄ«s Limassol", 
+  "Aris Salonicco", "Arsenal", "Astana", "Asteras Tripolīs", "Aston Villa", "Astra Giurgiu", "Atalanta", "Athletic Bilbao", 
+  "Athlone Town", "Atletico Madrid", "Atvidaberg", "Austria Vienna", "Auxerre", "Avenir Beggen", "AZ Alkmaar", "B1903", "B1909", 
+  "B1913", "Ballkani", "Banik Ostrava", "Barcellona", "Basilea", "Bastia", "BATE Borisov", "Bayer Leverkusen", "Bayern Monaco", 
+  "Beitar Gerusalemme ", "Belenenses", "Benfica", "Beroe", "Besiktas", "Beveren", "Birmingham City", "BK Frem", "Blackburn Rovers", 
+  "Boavista", "Bochum", "Bodø/Glimt", "Bohemians", "Bohemians Praga", "Bologna", "Bolton", "Bordeaux", "Borussia Dortmund", "Borussia M'Gladbach", 
+  "Botev Plovdiv", "Braga", "Brage", "Brann", "Brasov FC", "Breidablik", "Brighton", "Brøndby", "Burnley", "Bursaspor", "Cagliari", "Cannes", 
+  "Carl Zeiss Jena", "Celta Vigo", "Celtic", "CFR Cluj", "Chaves", "Chelsea", "Chemnitzer", "Club Brugge", "Coleraine", "Colonia", "Copenaghen", 
+  "Cork Celtic", "Cork City", "Cork Hibernians", "Čornomorec' Odesa", "Corvinul Hunedoara", "Crusaders", "Csepel", "CSKA Mosca", "CSKA Sofia", 
+  "CUF Barreiro", "Cukaricki", "DAC Dunajská Streda", "Debrecen", "Denizlispor", "Deportivo La Coruña", "Derby County", "Derry City", "Derry City", 
+  "Dinamo Berlin", "Dinamo Bucarest", "Dinamo Dresda", "Dinamo Kiev", "Dinamo Minsk", "Dinamo Mosca", "Dinamo Tbilisi", "Dinamo Tirana", 
+  "Dinamo Zagabria", "Diosgyor", "Djurgärden", "Dnipro", "Dnipro-1", "DOS Utrecht", "Drumcondra", "Duisburgo", "Dukla Praga", "Dundalk", 
+  "Dundee FC", "Dundee Utd", "DWS", "Dyskobolia Grodzisk Wielkopolski", "Eendracht Aalst", "Eintracht Braunschweig", "Eintracht Francoforte ", 
+  "Elbasani", "Elfsborg", "EPA Larnaca", "Erzgebirge Aue", "Esbjerg", "Espanyol", "Estoril Praia", "Etar", "Everton", "FC Jazz", "Fehérvár", 
+  "Fenerbahce", "Ferencvaros", "Feyenoord", "Fiorentina", "First Vienna", "FK TSC Bačka Topola", "Flamurtari", "Flora Tallin", "Floriana", "Fortuna Dusseldorf", 
+  "Fram Reykjavik", "Fredrikstad", "Freiburg", "Fulham", "Galatasaray ", "Gaziantepspor", "Gençlerbirliği", "Genk", "Genoa", "Gent", "Getafe", 
+  "GKS Katowice", "Glenavon", "Glentoran", "Gornik Zabrze", "Göteborg", "Grasshopers", "Grazer AK", "Groningen", "Guingamp", "Gwardia Warszawa", 
+  "Győr", "Haarlem", "Häcken", "Hajduk Split", "Haka", "Halmstad", "Hammarby", "Hamrun Spartans", "Hannover 96", "Hansa Rostock", "Hapoel Be'er Sheva", 
+  "Hapoel Tel Aviv", "Hearts", "Heerenveen", "Hellas Verona", "Helsingborg", "Hertha Berliner", "Hibernian", "Hibernians", "HIFK", "HJK", "Hoffenheim ", 
+  "Honved Budapest ", "HPS", "Hradec Kralove", "Hvidovre", "IA Akraness", "IBV Vestmannæyja", "IFK Malmö", "Ilves", "Internazionale Milano", "Inter Bratislava", "Ipswich Town", 
+  "Ironi Kiryat Shmona", "Istanbul Basaksehir", "Jablonec", "Jeunesse Esch", "Juventus", "KA Akureyri", "Kaiserslautern", "Karlsruher", "Karpaty", "KB", 
+  "Keflavik", "KF Tirana", "Kí Klaksvík", "Kilmarnock", "Køge BK", "Kongsvinger IT", "Konyaspor", "KPV", "KR Reykjavik", "Krasnodar ", "KSV Waregem", 
+  "Kuban' Krasnodar", "KuPS", "Kuusysi", "KV Mechelen", "La Chaux-de-Fonds", "Las Palmas", "LASK Linz", "Laval", "Lazio", "Lech Poznań", "Leeds United", 
+  "Legia Warszawa", "Leicester City", "Lens", "Levante", "Levski Sofija", "Lierse", "Lille", "Lillestrøm", "Limerick", "Lincoln Red Imps", "Linfield", "Linz", 
+  "Lisburn Distillery", "Liteks Loveč", "Liverpool", "Livorno", "LKS Łódź", "Lokeren", "Lokomotiv Leipzig", "Lokomotiv Moskva", "Lokomotiv Sofija", 
+  "Losena", "Luzern", "Ludogorec", "Lugano", "Lyn Oslo", "Lyngby", "Maccabi Haifa", "Maccabi Tel Aviv", "Magdeburg", "Mainz", "Mallorca", "Málaga", "Malmö FF", 
+  "Manchester City", "Manchester Utd", "Marek Dupnica", 
+  "Marítimo", "Metalist Charkiv", "Metz", "Middlesbrough", "Midtjylland", "Milan", "Mlada Boleslav", "Molde", "Monaco", "München 1860", "Montpellier", "Moss", 
+  "MTK Budapest", "Nacional de Madeira", "Nancy", "Nantes", "Napoli", "NEC Nijmegen", "Neftçi Baku", "Neuchâtel Xamax", "Newcastle Utd", "Nice", "NK Maribor", 
+  "Nordsjælland", "Nürnberg", "Norrköping", "Norwich City", "Nottingham Forest", "NS Mura", "Obilić", "Odense", "OFĪ Krītī", "OFK Beograd", "Olimpija Ljubljana", 
+  "Olympiakos", "Olympiakos Leukōsias", "Olympique Lyon", "Olympique Marseille", "Omonia", "OPS", "Örgryte", "Osasuna", "Osijek", "Ankaraspor", "Östers IF", 
+  "Oțelul Galați", "P'yownik", "Paços de Ferreira", "Palermo", "Panachaïkī", "Panathīnaïkos", "Pandurii Târgu Jiu", "Paniōnos", "PAOK Thessalonìki", "Paris Saint-Germain", 
+  "Parma", "Partinzan Beograd", "Partizani Tiranë", "Perugia", "Petrolul Ploiești", "Petrzalka", "Pezoporikos Larnaca", "Poli Timisoara", "Polonia Bytom", "Portadown", 
+  "Porto", "Portsmouth", "Progres Niedercon", "Progresul Bucarest", "PSV", "Qairat", "Qarabag", "Qəbələ", "Queens Park Rangers", "Rabat Ajax", "Racing Santander", 
+  "Radnicki Nis", "Raith Rovers", "Raków Częstochowa", "Randers", "Rangers", "Rapid Bucarest", "Rapid Vienna", "Rayo Vallecano", "RB Lipsia", "Real Betis Siviglia", 
+  "Real Madrid", "Real Sociedad", "Real Valladolid", "Red Boys Differdange", "Reipas Lahti", "Rennes", "RFC Liegi", "RFS Riga", "Rijeka", "Rio Ave", "Roda JC Kerkrade", 
+  "Roma", "RoPS", "Rosenborg", "Rostov", "Rot-Weiss Erfurt", "Rot-Weiss Essen", "Rotor Volvograd", "Rubin Kazan", "Ruch Chorzow", "RWD Molenbeek", "Saarbrücken", 
+  "Sachsen Leipzig", "Sachtar Donec'k", "Saint Etienne", "Salisburgo", "Sampdoria", "San Gallo", "Saragozza", "Sarajevo", "Sassuolo", "Schalke 04", "Servette", "Shahter FK", 
+  "Shamrock Rovers", "Sheffield Wednesday", "Shelbourne", "Sheriff Tiraspol", "Sigma Olomouc", "Silkeborg", "Sion", "Sivasspor", "Siviglia", "Skeid", "Skënderbeu", "Skonto Riga", 
+  "Slavia Praga", "Slavija-Mazyr", "Slesia Breslavia", "Sliema Wanderers", "Sligo Rovers", "Slovacko", "Slovan Bratislava", "Slovan Liberec", "Sochaux", "Southampton", 
+  "Sparta Praga", "Sparta Rotterdam", "Spartak Mosca", "Spartak Plovdiv", "Spartak Trnava", "Spora Lussemburgo", "Sporting Gijón", "Sporting Lisbona", "Sportul Studentesc Bucarest", 
+  "St Patrick's", "St. Johnstone", "St. Mirren", "Stade Dudelange", "Stade Reims", "Stahl Brandeburgo", "Stal Mielec", "Standard Liegi", "Start", "Steaua Bucarest", "Stella Rossa", 
+  "Stuttgart", "Stoke City", "Strasbourg", "Stromsgodset", "Sturm Graz", "Swansea", "Swarovski Tirolo", "Szombierki Bytom", "Tatran Presov", "Tavriya Sinferopoli", "Tekstil'ščik Kamyšin", 
+  "Tenerife", "Teplice", "Thun", "Tirolo Innsbruck", "Toulouse", "Torino", "Torpedo Moskva", "Tottenham", "TPS", "Trabzonspor", "Trelleborg FF", "Tromsø", "Twente", "U Craiova", 
+  "Udinese", "Uerdingen", "Ujpest Dosza", "Union Berlino", "Union Lussemburgo", "Union Saint-Gilloise", "Unirea Urziceni", "UTA Arad", "Utrecht", "Vác", "Vaduz", "Valencia", "Valerenga", 
+  "Valletta", "Valur", "Vardar", "Vasas Budapest", "Vaslui", "Vejle", "Velez Mostar", "Ventspils", "Victoria Bucarest", "Viking", "Vikingur", "Viktoria Frankfurt", "Viktoria Plzen", 
+  "Villareal", "Vistola Kraków", "Vitesse", "Vitkovice", "Vitoria Guimaraes", "Vitoria Setubal", "Vllaznia", "Vojvodina", "Vorskla", "VSS Kosice", "Wacker Innsbruck", "Waterford", 
+  "Watford", "Werder Brema", "West Bromwich", "West Ham", "Wettingen", "Widzew Lodz", "Wiener SK", "Wigan", "Willem II", "Winterslag", "Wolfsburg", "Wolverhampton", "Young Boys Berna", 
+  "Zaglebie Lubin", "Zaglebie Walbrzych", "Zalgiris", "Zalgiris Kaunas", "Zbrojovka Brno", "Zeljeznicar", "Zenit San Pietroburgo", "Zilina", "Zimbru Chișinău", "Zorja", "Zrinjski Mostar", 
+  "Zulte Waregem", "Zurich"
 ];
-    const logos = {
-  "Atalanta": "https://upload.wikimedia.org/wikipedia/it/8/81/Logo_Atalanta_Bergamo.svg",
-  "Everton": "https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg",
-  "Lazio": "https://upload.wikimedia.org/wikipedia/it/6/62/Stemma_della_Società_Sportiva_Lazio.svg",
-  "Liverpool": "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
-  "Osasuna": "https://upload.wikimedia.org/wikipedia/en/5/5e/CA_Osasuna_logo.svg",
-  "Udinese": "https://upload.wikimedia.org/wikipedia/en/2/2e/Udinese_Calcio_logo.svg",
-  "Napoli": "https://upload.wikimedia.org/wikipedia/commons/0/00/SSC_Napoli_2024_%28deep_blue_navy%29.svg",
-  "Perugia": "https://upload.wikimedia.org/wikipedia/it/d/d6/Associazione_Calcistica_Perugia_Calcio_logo.svg",
-  "Livorno": "https://upload.wikimedia.org/wikipedia/en/1/1c/AS_Livorno_Calcio_logo.svg",
-  "Amburgo": "https://upload.wikimedia.org/wikipedia/commons/6/66/Hamburger_SV.svg",
-  "Friburgo": "https://upload.wikimedia.org/wikipedia/en/0/0e/SC_Freiburg_logo.svg",
-  "Hoffenheim": "https://upload.wikimedia.org/wikipedia/en/9/95/TSG_1899_Hoffenheim_logo.svg",
-  "Zenit San Pietroburgo": "https://upload.wikimedia.org/wikipedia/en/f/fd/FC_Zenit_Saint_Petersburg_logo.svg",
-  "Galatasaray": "https://upload.wikimedia.org/wikipedia/en/8/8c/Galatasaray_Sports_Club_Logo.svg",
-  "Besiktas": "https://upload.wikimedia.org/wikipedia/en/b/bf/Besiktas_JK.svg",
-  "Trabzonspor": "https://upload.wikimedia.org/wikipedia/en/9/9b/Trabzonspor.svg",
-  "Istanbul Basaksehir": "https://upload.wikimedia.org/wikipedia/en/5/5f/Istanbul_Basaksehir_FK_logo.svg",
-  "Fenerbahce": "https://upload.wikimedia.org/wikipedia/en/3/3e/Fenerbahce_logo.svg",
-  "Dinamo Bucarest": "https://upload.wikimedia.org/wikipedia/en/4/4c/FC_Dinamo_Bucure%C8%99ti_logo.svg",
-  "Steaua Bucarest": "https://upload.wikimedia.org/wikipedia/en/9/9f/FC_Steaua_Bucuresti_logo.svg",
-  "Celtic": "https://upload.wikimedia.org/wikipedia/en/1/1c/Celtic_FC.svg",
-  "Rangers": "https://upload.wikimedia.org/wikipedia/en/5/5c/Rangers_FC.svg",
-  "Real Madrid": "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg",
-  "Roma": "https://upload.wikimedia.org/wikipedia/it/0/0e/AS_Roma_Logo_2017.svg",     
-  "Milan": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg",
-  "Barcellona": "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg"
-    };
+  const teamInfo = {
+  "Milan": {
+    flag: "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg",
+    colorsImg: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bianco_e_Rosso_%28Croce%29_e_Rosso_e_Nero_%28Strisce%29.svg"
+  },
+  "Real Madrid": {
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg",
+    colorsImg: "https://upload.wikimedia.org/wikipedia/commons/f/fe/600px_horizontal_bisection_HEX-DECDBB_HEX-5A2D81.svg"
+  },
+  "Barcellona": {
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg",
+    colorsImg: "https://upload.wikimedia.org/wikipedia/commons/4/4f/600px_Blue_HEX-00529F_Gold_HEX-FFDF1A_White_Purple_HEX-A2214B_Red_HEX-E1393D.svg"
+  }
+  // Continua così per le altre squadre...
+};
     const groups = [
       { prefix: "CL", label: "TotCL,CL,F,SF,Q,O,S,P,VS,DR", class: "cl-column" },
       { prefix: "EL", label: "TotEL,EL,F,SF,Q,O,S,P,VS,DR", class: "el-column" },
@@ -278,9 +299,11 @@
     }));
     const data = {
       "1955/56": {
-        "Real Madrid": { CL_TotCL: 8, CL_CL: 1, CL_F: 0, CL_SF: 1, SC_SC: 1 },
-        "Milan": { CL_TotCL: 3, CL_CL: 0, CL_F: 1, EL_SF: 1, SC_SC: 0 },
-        "Barcellona": { EL_TotEL: 4, EL_EL: 1, EL_F: 1, SC_SC: 1 }
+        "Real Madrid": { CL_CL: 1, CL_P:1, CL_VS:3, CL_DR:10 },
+        "Milan": { CL_SF: 1, CL_P:1, CL_VS:1, CL_DR:6 },
+        "Barcellona": { EL_TotEL: 4, EL_EL: 1, EL_F: 1, SC_SC: 1 },
+        "Stade Reims": { CL_F: 1, CL_P:1, CL_VS:3, CL_DR:6},
+        "Hibernian": { CL_SF: 1, CL_P:1, CL_VS:1, CL_DR:4},
       },
       "1956/57": {
         "Real Madrid": { CL_TotCL: 6, CL_CL: 1, CL_SF: 1, EL_Q: 1, SC_SC: 0 },
@@ -297,7 +320,7 @@ seasons.forEach(season => {
 startYear.value = seasons[0];
 endYear.value = seasons[seasons.length - 1];
 
-let currentSort = { col: null, asc: true };
+let currentSort = { col: "Tot", asc: false };
 
 function generateHeader() {
   const row = document.getElementById("header-row");
@@ -350,9 +373,12 @@ function calculateTable() {
   sortedTeams.forEach((team, index) => {
     const row = document.createElement("tr");
     row.className = index % 2 === 0 ? 'row-alt-light' : 'row-alt-normal';
-    const logo = logos[team] ? `<img src="${logos[team]}" class="team-logo" alt="${team}">` : "";
-    row.innerHTML = `<td class="team-cell"><span class="team-name"><span class="team-logo-wrapper">${logo}</span>${team}</span></td>` +
-      columns.map(col => `<td class="${columnClasses[col]}">${result[team][col]}</td>`).join("");
+    const info = teamInfo[team] || {};
+const flagImg = info.flag ? `<img src="${info.flag}" alt="" class="team-flag" />` : "";
+const colorsImg = info.colorsImg ? `<img src="${info.colorsImg}" alt="colori sociali" class="team-colors-img" />` : "";
+
+row.innerHTML = `<td class="team-cell"><span class="team-name">${colorsImg}${flagImg}${team}</span></td>` +
+  columns.map(col => `<td class="${columnClasses[col]}">${result[team][col]}</td>`).join("");
     tbody.appendChild(row);
   });
 }
