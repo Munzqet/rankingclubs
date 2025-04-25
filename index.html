@@ -244,7 +244,7 @@
       { prefix: "CL", label: "TotCL,CL,F,SF,Q,O,S,P,VS,DR", class: "cl-column" },
       { prefix: "EL", label: "TotEL,EL,F,SF,Q,O,S,P,VS,DR", class: "el-column" },
       { prefix: "CFL", label: "TotCFL,CFL,F,SF,Q,O,S,P,VS,DR", class: "cfl-column" },
-      { prefix: "CDC", label: "TotCDC,CDC,F,SF,Q,O,S,P,VS,DR", class: "cdc-column" },
+      { prefix: "CWC", label: "TotCWC,CWC,F,SF,Q,O,S,P,VS,DR", class: "cwc-column" },
       { prefix: "SC", label: "TotSC,SC", class: "sc-column" },
     ];
     const columns = ["Tot", ...groups.flatMap(g => g.label.split(",").map(col => `${g.prefix}_${col}`))];
@@ -459,7 +459,7 @@ function calculateTable() {
     r["CFL_TotCFL"] = (r["CFL_CFL"] || 0) * 21 + (r["CFL_F"] || 0) * 10 + (r["CFL_SF"] || 0) * 5 + (r["CFL_Q"] || 0) * 2 + (r["CFL_O"] || 0) + (r["CFL_S"] || 0) * 0.5 + (r["CFL_P"] || 0) + (r["CFL_VS"] || 0) * 0.1 + (r["CFL_DR"] || 0) * 0.04;
     r["SC_TotSC"] = (r["SC_SC"] || 0) * 85;
 
-    const totSum = r["CL_TotCL"] + r["EL_TotEL"] + r["CFL_TotCFL"] + r["CDC_TotCDC"] + r["SC_TotSC"];
+    const totSum = r["CL_TotCL"] + r["EL_TotEL"] + r["CFL_TotCFL"] + r["CWC_TotCWC"] + r["SC_TotSC"];
     result[team]["Tot"] = totSum;
   });
 
