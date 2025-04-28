@@ -553,6 +553,7 @@ function calculateTable() {
     const r = result[team];
     r["CL_TotCL"] = (r["CL_CL"] || 0) * 690 + (r["CL_F"] || 0) * 378 + (r["CL_SF"] || 0) * 216 + (r["CL_Q"] || 0) * 96 + (r["CL_O"] || 0) * 42 + (r["CL_S"] || 0) * 6 + (r["CL_P"] || 0) * 42 + (r["CL_VS"] || 0) * 3 + (r["CL_DR"] || 0);
     r["EL_TotEL"] = (r["EL_EL"] || 0) * 126 + (r["EL_F"] || 0) * 63 + (r["EL_SF"] || 0) * 31 + (r["EL_Q"] || 0) * 15 + (r["EL_O"] || 0) * 7 + (r["EL_S"] || 0) + (r["EL_P"] || 0) * 7 + (r["EL_VS"] || 0) * 0.6 + (r["EL_DR"] || 0) * 0.2;
+    r["EL_TotEL"] = (r["EL_EL"] || 0) * 126 + (r["EL_F"] || 0) * 63 + (r["EL_SF"] || 0) * 31 + (r["EL_Q"] || 0) * 15 + (r["CWC_O"] || 0) * 7 + (r["CWC_S"] || 0) + (r["CWC_P"] || 0) * 7 + (r["CWC_VS"] || 0) * 0.6 + (r["CWC_DR"] || 0) * 0.2;
     r["CFL_TotCFL"] = (r["CFL_CFL"] || 0) * 21 + (r["CFL_F"] || 0) * 10 + (r["CFL_SF"] || 0) * 5 + (r["CFL_Q"] || 0) * 2 + (r["CFL_O"] || 0) + (r["CFL_S"] || 0) * 0.5 + (r["CFL_P"] || 0) + (r["CFL_VS"] || 0) * 0.1 + (r["CFL_DR"] || 0) * 0.04;
     r["SC_TotSC"] = (r["SC_SC"] || 0) * 85;
 
