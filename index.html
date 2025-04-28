@@ -31,7 +31,7 @@
   margin: 0 0 0 0;
   border: 1px solid #d1d5db;
   width: 100%;
-  scroll-behavior: smooth;
+  scroll-behaviour: smooth;
   box-sizing: border-box;}
 .league-menu::-webkit-scrollbar {
   display: none;}
@@ -159,6 +159,7 @@
 </div>
   <table id="classifica">
     <thead>
+      <tr id="header-row"></tr>
     </thead>
     <tbody></tbody>
   </table>
@@ -166,7 +167,7 @@
     const teams = [
   "Aalborg BK", "Aarau", "Aarhus", "AB", "Aberdeen", "Académica Coimbra", "Admira Wien", "Admira Wacker", "ADO Den Haag",
   "AE Larisas", "AEK Athīna", "AEK Làrnaka", "AEL Lemesos", "AIK Solna", "Ajax", "Akademik Sofija", "Alanija Vladikavkaz",
-  "Alaskert", "Álaves", "Alemannia Aachen", "Hamburger", "Amsterdam FC", "Anderlecht", "Anorthōsī Ammochōstou", "Royal Antwerp", 
+  "Alaskert", "Álaves", "Alemannia Aachen", "Hamburger", "Amsterdam FC", "Anderlecht", "Anorthosis Famagosta", "Royal Antwerp", 
   "Anži Machačkala", "Apoel", "Apollon Limassol", "Ararat", "Ards", "Arges Pitesti", "Aris Bonnevoie", "Arīs Limassol", 
   "Aris Salonicco", "Arsenal", "Astana", "Asteras Tripolīs", "Aston Villa", "Astra Giurgiu", "Atalanta", "Athletic Bilbao", 
   "Athlone Town", "Atlético Madrid", "Atvidaberg", "Austria Wien", "Auxerre", "Avenir Beggen", "AZ Alkmaar", "B1903", "B1909", 
@@ -181,7 +182,7 @@
   "Dinamo Zagreb", "Diosgyor", "Djurgården", "Dnipro", "Dnipro-1", "DOS Utrecht", "Drumcondra", "Duisburgo", "Dukla Praha", "Dundalk", 
   "Dundee FC", "Dundee Utd", "DWS", "Dyskobolia Grodzisk Wielkopolski", "Eendracht Aalst", "Eintracht Braunschweig", "Eintracht Frankfurt", 
   "Elbasani", "Elfsborg", "EPA Larnaca", "Erzgebirge Aue", "Esbjerg", "Espanyol", "Estoril Praia", "Etar", "Everton", "FC Jazz", "Fehérvár", 
-  "Fenerbahçe", "Ferencváros", "Feyenoord", "Fiorentina", "First Vienna", "FK TSC Bačka Topola", "Flamurtari", "Flora Tallin", "Floriana", "Fortuna Dusseldorf", 
+  "Fenerbahçe", "Ferencvaros", "Feyenoord", "Fiorentina", "First Vienna", "FK TSC Bačka Topola", "Flamurtari", "Flora Tallin", "Floriana", "Fortuna Dusseldorf", 
   "Fram Reykjavik", "Fredrikstad", "Freiburg", "Fulham", "Galatasaray", "Gaziantepspor", "Gençlerbirliği", "Genk", "Genoa", "Gent", "Getafe", 
   "GKS Katowice", "Glenavon", "Glentoran", "Gornik Zabrze", "Göteborg", "Grasshoppers", "Grazer AK", "Groningen", "Guingamp", "Gwardia Warszawa", 
   "Győr", "Haarlem", "Häcken", "Hajduk Split", "Haka", "Halmstad", "Hammarby", "Hamrun Spartans", "Hannover 96", "Hansa Rostock", "Hapoel Be'er Sheva", 
@@ -508,7 +509,7 @@
       "Rangers" : {CL_P: 1, CL_VS:-2, CL_DR:-7},
       "Valletta" : {CL_P: 1, CL_VS:-2, CL_DR:-8}             
     }
-const startYear = document.getElementById("startYear");
+    };const startYear = document.getElementById("startYear");
 const endYear = document.getElementById("endYear");
 const seasons = Object.keys(data);
 seasons.forEach(season => {
@@ -553,7 +554,6 @@ function calculateTable() {
     const r = result[team];
     r["CL_TotCL"] = (r["CL_CL"] || 0) * 690 + (r["CL_F"] || 0) * 378 + (r["CL_SF"] || 0) * 216 + (r["CL_Q"] || 0) * 96 + (r["CL_O"] || 0) * 42 + (r["CL_S"] || 0) * 6 + (r["CL_P"] || 0) * 42 + (r["CL_VS"] || 0) * 3 + (r["CL_DR"] || 0);
     r["EL_TotEL"] = (r["EL_EL"] || 0) * 126 + (r["EL_F"] || 0) * 63 + (r["EL_SF"] || 0) * 31 + (r["EL_Q"] || 0) * 15 + (r["EL_O"] || 0) * 7 + (r["EL_S"] || 0) + (r["EL_P"] || 0) * 7 + (r["EL_VS"] || 0) * 0.6 + (r["EL_DR"] || 0) * 0.2;
-    r["EL_TotEL"] = (r["EL_EL"] || 0) * 126 + (r["EL_F"] || 0) * 63 + (r["EL_SF"] || 0) * 31 + (r["EL_Q"] || 0) * 15 + (r["CWC_O"] || 0) * 7 + (r["CWC_S"] || 0) + (r["CWC_P"] || 0) * 7 + (r["CWC_VS"] || 0) * 0.6 + (r["CWC_DR"] || 0) * 0.2;
     r["CFL_TotCFL"] = (r["CFL_CFL"] || 0) * 21 + (r["CFL_F"] || 0) * 10 + (r["CFL_SF"] || 0) * 5 + (r["CFL_Q"] || 0) * 2 + (r["CFL_O"] || 0) + (r["CFL_S"] || 0) * 0.5 + (r["CFL_P"] || 0) + (r["CFL_VS"] || 0) * 0.1 + (r["CFL_DR"] || 0) * 0.04;
     r["SC_TotSC"] = (r["SC_SC"] || 0) * 85;
 
